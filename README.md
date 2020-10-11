@@ -1,1 +1,2 @@
-## Ejercicios de OmegaUp Parcial02
+## OmwgaUp
+Ejercicios de OmegaUp Parcial02

@@ -1,0 +1,59 @@
+import java.util.Scanner;
+import java.util.Stack;
+public class Main { 
+  static char[] open={'(','{','['};
+  static char[] close={')','}',']'};
+    
+    static boolean isOpen(char c){
+        for (int i=0;i<open.length;i++)
+            if (open[i]==c)
+                return true;
+        return false;
+
+    }
+
+    static char getInv(char c){
+        for (int i=0;i<open.length;i++)
+            if (open[i]==c)
+                return close[i];
+        for (int i=0;i<close.length;i++)
+            if (close[i]==c)
+                return open[i];
+        return ' ';
+    }
+
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int n_veces=input.nextInt();
+
+        for (int j=0;j<n_veces;j++){
+            String expression   =input.next();
+            char[] expr=expression.toCharArray();
+            Stack<Character> s= new Stack<>();
+            boolean funciona = true;
+            for (int i=0; i<expr.length;i++){
+                if (isOpen(expr[i]))
+                    s.push(expr[i]);
+                else{
+                    if (s.isEmpty()){
+                        funciona=false;
+                        break;
+                    }else if (s.peek()!=getInv(expr[i])){
+                        funciona=false;
+                        break;
+                    }else
+                        s.pop();
+                }
+            }
+            if (!s.empty())
+                funciona=false;
+            if (funciona)
+                System.out.println("SI");
+            else
+                System.out.println("NO");
+
+        }
+        }
+
+}

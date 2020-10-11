@@ -1,0 +1,49 @@
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Main {
+public static void main(String[] args) {
+     try (// para que no genere un error a la hora de compilar
+      Scanner s = new Scanner(System.in)) {
+      Stack<Integer> pila1= new Stack<>();
+      Stack<Integer> pila2= new Stack<>();
+      int a= s.nextInt();
+	 for(int i=0;i<a;i++) {
+          int instrucciones= s.nextInt();
+           if(instrucciones==1) {
+             int pil=s.nextInt();
+              if(pil==1) {
+              pila1.push(s.nextInt());
+              }else if(pil==2) {
+              pila2.push(s.nextInt());
+	      }
+              }else if(instrucciones==2) {
+               int b= s.nextInt();
+               if(b==1) {
+               int expulsa=s.nextInt();
+               while(expulsa!=0) {
+               if(!pila1.isEmpty()) {
+               pila2.push(pila1.pop());
+               }
+               expulsa--;
+               }
+               }else if(b==2) {
+               int expulsa=s.nextInt();
+               while(expulsa!=0) {
+               if(!pila2.isEmpty()) {
+               pila1.push(pila2.pop());
+               }
+               expulsa--;				}
+               }
+              }		
+           }
+	      while(!pila1.isEmpty()) {
+              	System.out.println(pila1.pop()+" ");
+              	}
+                System.out.println();
+                while(!pila2.isEmpty()) {
+                System.out.println(pila2.pop()+" ");
+		}
+	}
+    }
+}

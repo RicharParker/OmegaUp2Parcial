@@ -1,0 +1,41 @@
+#include<iostream>
+#include<queue>
+#include<vector>
+#include<algorithm>
+#define ll long long
+using namespace std;
+
+int main(){
+    priority_queue<int,vector<int>,greater<int> >pq;
+    int num,k,val,count = 0,val1,val2,mix;cin>>num>>k;
+    bool trigger = false;
+    for(int i=0;i<num;i++){
+        cin>>val;
+        pq.push(val);
+    }
+    while(pq.top() < k ){
+        count+=1;
+            if(!pq.empty()) {
+                val1 = pq.top();
+                pq.pop();
+                //cout<<val1<<endl;
+                if (!pq.empty()) {
+                    //cout<<"\nEntered : ";
+                    val2 = pq.top();
+                    pq.pop();
+                    mix = val1 + 2 * val2;
+                    pq.push(mix);
+                } else {
+                    trigger = true;
+                    break;
+                }
+            }else{
+                trigger = true;
+                break;
+            }
+    }
+    if(trigger)
+        cout<<-1<<endl;
+    else
+        cout<<count<<endl;
+}
